@@ -7,12 +7,12 @@
 <style>
 body { font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5; }
 img { width: 300px; height: 300px; object-fit: contain; display: block; margin: 20px auto; }
-table { margin: 20px auto; border-collapse: collapse; width: 60%; }
+table { margin: 20px auto; border-collapse: collapse; width: 70%; }
 th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
 th { background-color: #eee; }
 button { display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background-color: #28a745; color: white; }
 h1 { text-align: center; }
-.description { text-align: center; margin: 20px auto; width: 60%; }
+.description { text-align: center; margin: 20px auto; width: 70%; }
 </style>
 </head>
 <body>
@@ -20,13 +20,73 @@ h1 { text-align: center; }
 <div id="product-details"></div>
 
 <script>
-// SAME PRODUCTS OBJECT AS INDEX
+// PRODUCTS OBJECT: add real tech-store info
 const products = {
-    1: { name: "Wireless Headphones", price: 899, description: "High-quality wireless headphones with noise cancellation and long battery life.", image: "product1a.jpg", stock: 25 },
-    2: { name: "Smartwatch", price: 1499, description: "Stylish smartwatch with heart-rate monitor, step counter, and notifications.", image: "product2a.jpg", stock: 10 },
-    3: { name: "Gaming Mouse", price: 699, description: "Ergonomic gaming mouse with adjustable DPI, RGB lighting, and programmable buttons.", image: "product3a.jpg", stock: 40 },
-    4: { name: "Bluetooth Speaker", price: 1299, description: "Portable Bluetooth speaker with crystal-clear sound, 12-hour battery life, and waterproof design.", image: "product4a.jpg", stock: 15 },
-    5: { name: "Portable Charger", price: 499, description: "Compact 10000mAh portable charger for phones and tablets, fast-charging support.", image: "product5a.jpg", stock: 30 }
+    1: { 
+        name: "Wireless Headphones",
+        price: 899,
+        stock: 25,
+        description: "High-quality wireless headphones with noise cancellation and long battery life.",
+        image: "product1a.jpg",
+        weight: "250g",
+        dimensions: "18cm x 15cm x 8cm",
+        barcode: "1234567890123",
+        brand: "SoundMax",
+        color: "Black",
+        model: "SM-WH100"
+    },
+    2: { 
+        name: "Bluetooth Speaker",
+        price: 1299,
+        stock: 15,
+        description: "Portable Bluetooth speaker with crystal-clear sound, 12-hour battery life, and waterproof design.",
+        image: "product2a.jpg",
+        weight: "600g",
+        dimensions: "20cm x 10cm x 10cm",
+        barcode: "4567890123456",
+        brand: "BeatBox",
+        color: "Red",
+        model: "BB-S300"
+    },
+    3: { 
+        name: "Smartwatch",
+        price: 1499,
+        stock: 10,
+        description: "Stylish smartwatch with heart-rate monitor, step counter, and notifications.",
+        image: "product3a.jpg",
+        weight: "50g",
+        dimensions: "4cm x 4cm x 1cm",
+        barcode: "2345678901234",
+        brand: "TimeTech",
+        color: "Silver",
+        model: "TT-SW1"
+    },
+    4: { 
+        name: "Gaming Mouse",
+        price: 699,
+        stock: 40,
+        description: "Ergonomic gaming mouse with adjustable DPI, RGB lighting, and programmable buttons.",
+        image: "product4a.jpg",
+        weight: "120g",
+        dimensions: "12cm x 6cm x 4cm",
+        barcode: "3456789012345",
+        brand: "GamerPro",
+        color: "Black",
+        model: "GP-MX7"
+    },
+    5: { 
+        name: "Portable Charger",
+        price: 499,
+        stock: 30,
+        description: "Compact 10000mAh portable charger for phones and tablets, fast-charging support.",
+        image: "product5a.jpg",
+        weight: "200g",
+        dimensions: "10cm x 6cm x 2cm",
+        barcode: "5678901234567",
+        brand: "PowerGo",
+        color: "White",
+        model: "PG-10000"
+    }
 };
 
 // Get product ID from URL
@@ -42,6 +102,12 @@ if(products[productId]){
         <table>
             <tr><th>Price</th><td>R${p.price}</td></tr>
             <tr><th>Stock</th><td>${p.stock} available</td></tr>
+            <tr><th>Brand</th><td>${p.brand}</td></tr>
+            <tr><th>Model</th><td>${p.model}</td></tr>
+            <tr><th>Color</th><td>${p.color}</td></tr>
+            <tr><th>Weight</th><td>${p.weight}</td></tr>
+            <tr><th>Dimensions</th><td>${p.dimensions}</td></tr>
+            <tr><th>Barcode</th><td>${p.barcode}</td></tr>
         </table>
         <button onclick="alert('Thank you for purchasing ${p.name}!')">Buy Now</button>
     `;
