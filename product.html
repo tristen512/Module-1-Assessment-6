@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Product Details</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    nav a { margin: 0 10px; text-decoration: none; color: blue; }
+    .product-images img { width: 300px; height: 300px; margin: 10px; object-fit: cover; }
+  </style>
 </head>
 <body>
-<nav>
-  <a href="index.html">Home</a> |
-  <a href="contact.html">Contact</a>
-</nav>
-<div id="product-details"></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<script>
-const products = [
-  {id:1,name:"Wireless Headphones",price:"R499",stock:14,description:"Comfortable wireless headphones."},
-  {id:2,name:"Bluetooth Speaker",price:"R299",stock:20,description:"Portable Bluetooth speaker."},
-  {id:3,name:"Smartwatch",price:"R699",stock:10,description:"Track your fitness and notifications."},
-  {id:4,name:"LED Gaming Mouse",price:"R199",stock:15,description:"RGB LED gaming mouse."},
-  {id:5,name:"Portable Charger",price:"R399",stock:12,description:"High-capacity portable charger."}
-];
+  <h1 id="productTitle">Product Title</h1>
+  <p id="productPrice"></p>
+  <p id="productStock"></p>
 
-function getQueryParam(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
+  <div class="product-images" id="productImages"></div>
 
-const id = parseInt(getQueryParam('id'));
-const product = products.find(p => p.id === id);
-const container = document.getElementById('product-details');
+  <script>
+    const products = {
+      1: { title: 'Product 1', price: '$10', stock: 'In Stock', images: ['product1a.jpg','product1b.jpg','product1c.jpg'] },
+      2: { title: 'Product 2', price: '$20', stock: 'In Stock', images: ['product2a.jpg','product2b.jpg','product2c.jpg'] },
+      3: { title: 'Product 3', price: '$15', stock: 'Out of Stock', images: ['product3a.jpg','product3b.jpg','product3c.jpg'] },
+      4: { title: 'Product 4', price: '$25', stock: 'In Stock', images: ['product4a.jpg','product4b.jpg','product4c.jpg'] },
+      5: { title: 'Portable Charger', price: '$30', stock: 'In Stock', images: ['product5a.jpg','product5b.jpg','product5c.jpg'] }
+    };
 
-if(product){
-  container.innerHTML = `
-    <h1>${product.name}</h1>
-    <div>
-      <img src="product${id}a.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
-      <img src="product${id}b.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
-      <img src="product${id}c.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
-    </div>
-    <p>Price: ${product.price}</p>
-    <p>Stock: ${product.stock}</p>
-    <p>${product.description}</p>
-    <a href="index.html">Back to Products</a>
-  `;
-}else{
-  container.innerHTML = "<p>Product not found.</p>";
-}
-</script>
+    const productID = localStorage.getItem('productID');
+    const product = products[productID];
+
+    document.getElementById('productTitle').innerText = product.title;
+    document.getElementById('productPrice').innerText = 'Price: ' + product.price;
+    document.getElementById('productStock').innerText = 'Stock: ' + product.stock;
+
+    const container = document.getElementById('productImages');
+    product.images.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = product.title;
+      img.onerror = () => { img.src = 'https://via.placeholder.com/300?text=No+Image'; };
+      container.appendChild(img);
+    });
+  </script>
 </body>
 </html>
