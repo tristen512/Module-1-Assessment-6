@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="contact.html">Contact</a>
+</nav>
 <div id="product-details"></div>
 
 <script>
@@ -37,7 +41,7 @@ if(product){
     <p>Price: ${product.price}</p>
     <p>Stock: ${product.stock}</p>
     <p>${product.description}</p>
-    <a href="index.html">Back</a>
+    <a href="index.html">Back to Products</a>
   `;
 }else{
   container.innerHTML = "<p>Product not found.</p>";
