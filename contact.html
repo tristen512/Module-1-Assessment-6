@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Contact Us</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    nav a { margin: 0 10px; text-decoration: none; color: blue; }
+    form { max-width: 400px; }
+    input, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
+  </style>
 </head>
 <body>
-<nav>
-  <a href="index.html">Home</a> |
-  <a href="contact.html">Contact</a>
-</nav>
-<h1>Contact Us</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<form id="contact-form">
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name" required><br><br>
+  <h1>Contact Us</h1>
+  <form onsubmit="submitForm(event)">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Send</button>
+  </form>
 
-  <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email" required><br><br>
-
-  <label for="message">Message:</label><br>
-  <textarea id="message" name="message" rows="5" required></textarea><br><br>
-
-  <button type="submit">Send</button>
-</form>
-
-<div id="confirmation" style="margin-top:20px;color:green;"></div>
-
-<script>
-const form = document.getElementById('contact-form');
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  document.getElementById('confirmation').textContent = "Thank you! Your message has been sent.";
-  form.reset();
-});
-</script>
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Message sent! (This is a demo form, no actual sending)');
+      e.target.reset();
+    }
+  </script>
 </body>
 </html>
