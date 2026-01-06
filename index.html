@@ -6,27 +6,28 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <h1>Our Products</h1>
 <div id="catalogue"></div>
 
 <script>
 const products = [
-  {id:1,name:"Wireless Headphones",folder:"product1",price:"R499",stock:14,description:"Comfortable wireless headphones with deep bass."},
-  {id:2,name:"Bluetooth Speaker",folder:"product2",price:"R299",stock:22,description:"Compact Bluetooth speaker with 10-hour battery life."},
-  {id:3,name:"Smartwatch",folder:"product3",price:"R699",stock:10,description:"Modern smartwatch with fitness tracking."},
-  {id:4,name:"LED Gaming Mouse",folder:"product4",price:"R199",stock:30,description:"Comfortable gaming mouse with RGB lighting."},
-  {id:5,name:"Portable Charger",folder:"product5",price:"R399",stock:12,description:"High-capacity portable charger."}
+  {id:1,name:"Wireless Headphones",folder:"product1",price:"R499"},
+  {id:2,name:"Bluetooth Speaker",folder:"product2",price:"R299"},
+  {id:3,name:"Smartwatch",folder:"product3",price:"R699"},
+  {id:4,name:"LED Gaming Mouse",folder:"product4",price:"R199"},
+  {id:5,name:"Portable Charger",folder:"product5",price:"R399"}
 ];
 
 const catalogue = document.getElementById('catalogue');
+
 products.forEach(p => {
   const div = document.createElement('div');
   div.className = 'product';
   div.innerHTML = `
     <h3>${p.name}</h3>
     <a href="product.html?id=${p.id}">
-      <img src="images/${p.folder}/${p.folder}a.jpg" 
+      <img src="images/${p.folder}/${p.folder}a.jpg"
+           alt="${p.name}"
            onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
     </a>
     <p>Price: ${p.price}</p>
@@ -34,6 +35,5 @@ products.forEach(p => {
   catalogue.appendChild(div);
 });
 </script>
-
 </body>
 </html>
