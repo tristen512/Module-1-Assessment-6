@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Details</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="product-details"></div>
+
+<script>
+const products = [
+  {id:1,name:"Wireless Headphones",folder:"product1",price:"R499",stock:14,description:"Comfortable wireless headphones with deep bass."},
+  {id:2,name:"Bluetooth Speaker",folder:"product2",price:"R299",stock:22,description:"Compact Bluetooth speaker with 10-hour battery life."},
+  {id:3,name:"Smartwatch",folder:"product3",price:"R699",stock:10,description:"Modern smartwatch with fitness tracking."},
+  {id:4,name:"LED Gaming Mouse",folder:"product4",price:"R199",stock:30,description:"Comfortable gaming mouse with RGB lighting."},
+  {id:5,name:"Portable Charger",folder:"product5",price:"R399",stock:12,description:"High-capacity portable charger."}
+];
+
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+const id = parseInt(getQueryParam('id'));
+const product = products.find(p => p.id === id);
+
+const container = document.getElementById('product-details');
+
+if(product){
+  container.innerHTML = `
+    <h1>${product.name}</h1>
+    <div class="images">
+      <img src="images/${product.folder}/${product.folder}a.jpg" onerror="this.onerror=null;this.src='https://via.placeholder.com/400?text=Image+Not+Found';">
+      <img src="images/${product.folder}/${product.folder}b.jpg" onerror="this.onerror=null;this.src='https://via.placeholder.com/400?text=Image+Not+Found';">
+      <img src="images/${product.folder}/${product.folder}c.jpg" onerror="this.onerror=null;this.src='https://via.placeholder.com/400?text=Image+Not+Found';">
+    </div>
+    <p>Price: ${product.price}</p>
+    <p>Stock: ${product.stock}</p>
+    <p>${product.description}</p>
+    <a href="index.html">Back to Catalogue</a>
+  `;
+} else {
+  container.innerHTML = "<p>Product not found.</p>";
+}
+</script>
+
+</body>
+</html>
