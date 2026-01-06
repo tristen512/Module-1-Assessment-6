@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Headphones",
+    "folder": "product1",
+    "price": "R499",
+    "stock": 14,
+    "description": "Comfortable wireless headphones with deep bass and long battery life."
+  },
+  {
+    "id": 2,
+    "name": "Bluetooth Speaker",
+    "folder": "product2",
+    "price": "R299",
+    "stock": 22,
+    "description": "Compact Bluetooth speaker with powerful sound and 10-hour battery life."
+  },
+  {
+    "id": 3,
+    "name": "Smartwatch",
+    "folder": "product3",
+    "price": "R699",
+    "stock": 10,
+    "description": "A modern smartwatch with fitness tracking, heart-rate monitoring and a bright display."
+  },
+  {
+    "id": 4,
+    "name": "LED Gaming Mouse",
+    "folder": "product4",
+    "price": "R199",
+    "stock": 30,
+    "description": "A comfortable gaming mouse with RGB lighting and high precision performance."
+  },
+  {
+    "id": 5,
+    "name": "Portable Charger",
+    "folder": "product5",
+    "price": "R399",
+    "stock": 12,
+    "description": "High-capacity portable charger with fast charging for phones and tablets."
+  }
+]
