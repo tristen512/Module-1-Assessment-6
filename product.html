@@ -1,170 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Details</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    nav a { margin: 0 10px; text-decoration: none; color: blue; }
-    img { width: 300px; height: 300px; object-fit: cover; margin: 10px; }
-    .images { display: flex; flex-wrap: wrap; }
-
-    table { 
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    table, th, td {
-      border: 1px solid #333;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background: #eee;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #28a745;
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      border-radius: 8px;
-    }
-    .buy-btn:hover {
-      background: #218838;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; padding: 20px; }
+        .container {
+            max-width: 900px; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        img {
+            width: 300px; 
+            height: 300px; 
+            object-fit: cover; 
+            border-radius: 10px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .info-box { margin-top: 20px; }
+        table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px;
+        }
+        table, th, td { 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            text-align: left; 
+        }
+        .buy-btn {
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .buy-btn:hover {
+            background: #218838;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+    <a href="index.html" class="back-link">← Back to Products</a>
 
-  <div id="product-container"></div>
+    <div class="container">
+        <h1 id="productName">Product</h1>
 
-  <script>
-    // PRODUCT DATA
-    const products = {
-      earbuds: {
-        name: "Wireless Earbuds",
-        description: "High-quality Bluetooth earbuds with long battery life and noise cancellation.",
-        price: "R499",
-        stock: "15",
-        info: {
-          Weight: "150g",
-          Dimensions: "5cm x 3cm",
-          Barcode: "889977334412",
-          Warranty: "6 Months"
-        },
-        images: ["earbuds1.jpg", "earbuds2.jpg"]
-      },
+        <img id="productImage" src="" alt="Product Image" onerror="this.src='placeholder.jpg'">
 
-      smartwatch: {
-        name: "Smart Watch",
-        description: "Track your fitness, monitor heart rate, and stay connected with this sleek smartwatch.",
-        price: "R1299",
-        stock: "10",
-        info: {
-          Weight: "200g",
-          Dimensions: "10cm x 4cm",
-          Barcode: "991122334455",
-          Warranty: "1 Year"
-        },
-        images: ["smartwatch1.jpg", "smartwatch2.jpg"]
-      },
+        <p><strong>Price:</strong> R<span id="productPrice"></span></p>
+        <p><strong>Stock:</strong> <span id="productStock"></span></p>
 
-      mouse: {
-        name: "Gaming Mouse",
-        description: "Ergonomic gaming mouse with customizable DPI and RGB lighting.",
-        price: "R349",
-        stock: "20",
-        info: {
-          Weight: "120g",
-          Dimensions: "11cm x 6cm",
-          Barcode: "223344556677",
-          Warranty: "3 Months"
-        },
-        images: ["mouse1.jpg", "mouse2.jpg"]
-      },
+        <div class="info-box">
+            <h3>Description</h3>
+            <p id="productDescription"></p>
+        </div>
 
-      speaker: {
-        name: "Bluetooth Speaker",
-        description: "Portable Bluetooth speaker with crystal-clear sound and long-lasting battery.",
-        price: "R799",
-        stock: "12",
-        info: {
-          Weight: "450g",
-          Dimensions: "15cm x 7cm",
-          Barcode: "334455667788",
-          Warranty: "1 Year"
-        },
-        images: ["speaker1.jpg", "speaker2.jpg"]
-      },
-
-      charger: {
-        name: "Portable Charger",
-        description: "Compact 10000mAh power bank, perfect for charging devices on the go.",
-        price: "R299",
-        stock: "25",
-        info: {
-          Weight: "220g",
-          Dimensions: "14cm x 6cm",
-          Barcode: "556677889900",
-          Warranty: "6 Months"
-        },
-        images: ["charger1.jpg", "charger2.jpg"]
-      }
-    };
-
-    // Get product key from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const productKey = urlParams.get("item");
-    const container = document.getElementById("product-container");
-
-    if (products[productKey]) {
-      const p = products[productKey];
-
-      let html = `
-        <h1>${p.name}</h1>
-        <p>${p.description}</p>
-        <p><strong>Price:</strong> ${p.price}</p>
-        <p><strong>Stock:</strong> ${p.stock}</p>
-
-        <h2>Product Information</h2>
+        <h3>Product Information</h3>
         <table>
-          <tr><th>Feature</th><th>Details</th></tr>
-          <tr><td>Weight</td><td>${p.info.Weight}</td></tr>
-          <tr><td>Dimensions</td><td>${p.info.Dimensions}</td></tr>
-          <tr><td>Barcode</td><td>${p.info.Barcode}</td></tr>
-          <tr><td>Warranty</td><td>${p.info.Warranty}</td></tr>
+            <tr><th>Weight</th><td>500g</td></tr>
+            <tr><th>Dimensions</th><td>15cm x 10cm x 8cm</td></tr>
+            <tr><th>Barcode</th><td>1234567890123</td></tr>
+            <tr><th>Category</th><td>Electronics</td></tr>
         </table>
 
-        <h2>Images</h2>
-        <div class="images">
-      `;
+        <button class="buy-btn">Buy Now</button>
+    </div>
 
-      p.images.forEach(img => {
-        html += `<img src="${img}" onerror="this.src='https://via.placeholder.com/300?text=No+Image'">`;
-      });
+<script>
+    // Read product data from URL
+    const params = new URLSearchParams(window.location.search);
 
-      html += `</div>
-        <a href="#" class="buy-btn">Buy Now</a>
-      `;
+    const name = params.get("name");
+    const price = params.get("price");
+    const stock = params.get("stock");
+    const desc = params.get("desc");
+    const image = params.get("image");
 
-      container.innerHTML = html;
-
+    if (!name) {
+        document.querySelector(".container").innerHTML = "<h2>Product not found.</h2>";
     } else {
-      container.innerHTML = "<p>Product not found.</p>";
+        document.getElementById("productName").textContent = name;
+        document.getElementById("productPrice").textContent = price;
+        document.getElementById("productStock").textContent = stock;
+        document.getElementById("productDescription").textContent = desc;
+        document.getElementById("productImage").src = image;
     }
-  </script>
+</script>
 
 </body>
 </html>
