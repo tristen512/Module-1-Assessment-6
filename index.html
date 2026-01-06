@@ -48,51 +48,56 @@
 </head>
 <body>
     <h1>Our Products</h1>
-    <div class="products">
-        <!-- 1. Wireless Headphones -->
-        <div class="product">
-            <a href="product.html?product=1">
-                <img src="product1a.jpg" alt="Wireless Headphones">
-                <h3>Wireless Headphones</h3>
-                <p>Price: R899</p>
-            </a>
-        </div>
+    <div class="products" id="product-container"></div>
 
-        <!-- 2. Bluetooth Speaker -->
-        <div class="product">
-            <a href="product.html?product=4">
-                <img src="product4a.jpg" alt="Bluetooth Speaker">
-                <h3>Bluetooth Speaker</h3>
-                <p>Price: R1299</p>
-            </a>
-        </div>
+    <script>
+        // Product data (same as product.html)
+        const products = {
+            1: { 
+                name: "Wireless Headphones", price: 899, stock: 25, 
+                description: "High-quality wireless headphones with noise cancellation and long battery life.", 
+                image: "product1a.jpg", weight:"250g", dimensions:"18cm x 15cm x 8cm", barcode:"1234567890123" 
+            },
+            2: { 
+                name: "Smartwatch", price: 1499, stock: 10, 
+                description: "Stylish smartwatch with heart-rate monitor, step counter, and notifications.", 
+                image: "product2a.jpg", weight:"50g", dimensions:"4cm x 4cm x 1cm", barcode:"2345678901234" 
+            },
+            3: { 
+                name: "Gaming Mouse", price: 699, stock: 40, 
+                description: "Ergonomic gaming mouse with adjustable DPI, RGB lighting, and programmable buttons.", 
+                image: "product3a.jpg", weight:"120g", dimensions:"12cm x 6cm x 4cm", barcode:"3456789012345" 
+            },
+            4: { 
+                name: "Bluetooth Speaker", price: 1299, stock: 15, 
+                description: "Portable Bluetooth speaker with crystal-clear sound, 12-hour battery life, and waterproof design.", 
+                image: "product4a.jpg", weight:"600g", dimensions:"20cm x 10cm x 10cm", barcode:"4567890123456" 
+            },
+            5: { 
+                name: "Portable Charger", price: 499, stock: 30, 
+                description: "Compact 10000mAh portable charger for phones and tablets, fast-charging support.", 
+                image: "product5a.jpg", weight:"200g", dimensions:"10cm x 6cm x 2cm", barcode:"5678901234567" 
+            }
+        };
 
-        <!-- 3. Smartwatch -->
-        <div class="product">
-            <a href="product.html?product=2">
-                <img src="product2a.jpg" alt="Smartwatch">
-                <h3>Smartwatch</h3>
-                <p>Price: R1499</p>
-            </a>
-        </div>
+        // Desired order on homepage
+        const homepageOrder = [1, 4, 2, 3, 5];
 
-        <!-- 4. Gaming Mouse -->
-        <div class="product">
-            <a href="product.html?product=3">
-                <img src="product3a.jpg" alt="Gaming Mouse">
-                <h3>Gaming Mouse</h3>
-                <p>Price: R699</p>
-            </a>
-        </div>
+        const container = document.getElementById("product-container");
 
-        <!-- 5. Portable Charger -->
-        <div class="product">
-            <a href="product.html?product=5">
-                <img src="product5a.jpg" alt="Portable Charger">
-                <h3>Portable Charger</h3>
-                <p>Price: R499</p>
-            </a>
-        </div>
-    </div>
+        homepageOrder.forEach(id => {
+            const product = products[id];
+            const div = document.createElement("div");
+            div.className = "product";
+            div.innerHTML = `
+                <a href="product.html?product=${id}">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Price: R${product.price}</p>
+                </a>
+            `;
+            container.appendChild(div);
+        });
+    </script>
 </body>
 </html>
