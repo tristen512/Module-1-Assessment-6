@@ -6,12 +6,16 @@
 <title>Product Details</title>
 <style>
 body { font-family: Arial, sans-serif; background:#f2f2f2; margin:0; padding:0; }
-nav { background:#333; padding:10px; text-align:center; }
-nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
-.container { max-width:800px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.2); }
-.product-images { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
-.product-images img { width:250px; border-radius:10px; }
-.barcode { margin-top:20px; text-align:center; }
+nav { background:#333; padding:15px; text-align:center; }
+nav a { color:white; margin:0 20px; text-decoration:none; font-weight:bold; font-size:18px; }
+.container { max-width:900px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.2); }
+img { width:300px; height:300px; object-fit:cover; border-radius:10px; display:block; margin:auto; }
+h1 { text-align:center; margin-top:10px; }
+table { width:80%; margin:20px auto; border-collapse:collapse; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+th { background:#eee; }
+.description { text-align:center; width:80%; margin:20px auto; }
+button { display:block; margin:20px auto; padding:12px 25px; border:none; background:#28a745; color:white; font-size:16px; border-radius:5px; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -22,81 +26,83 @@ nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
   <a href="contact.html">Contact Us</a>
 </nav>
 
-<div class="container">
-  <h1 id="name"></h1>
-  <div class="product-images">
-    <img id="img1">
-    <img id="img2">
-  </div>
-
-  <h3>Price: <span id="price"></span></h3>
-
-  <h3>Product Specifications:</h3>
-  <ul id="specs"></ul>
-
-  <div class="barcode">
-    <h3>Barcode:</h3>
-    <img id="barcodeImg" style="width:200px;">
-  </div>
-</div>
+<div class="container" id="product-details"></div>
 
 <script>
+const id = new URLSearchParams(window.location.search).get("id");
+
 const products = {
-  1: {
-    name: "Wireless Headphones",
-    images: ["product1a.jpg", "product1b.jpg"],
-    price: "R899",
-    specs: ["Bluetooth 5.0", "Noise Cancellation", "20h Battery Life", "Fast Charging"],
-    barcode: "barcode1.png"
-  },
-  2: {
-    name: "Bluetooth Speaker",
-    images: ["product2a.jpg", "product2b.jpg"],
-    price: "R599",
-    specs: ["10W Output", "Waterproof IPX5", "6h Playback", "Bass Boost"],
-    barcode: "barcode2.png"
-  },
-  3: {
-    name: "Smartwatch",
-    images: ["product3a.jpg", "product3b.jpg"],
-    price: "R1299",
-    specs: ["Heart Rate Monitor", "Bluetooth Calls", "Step Counter", "Sleep Tracking"],
-    barcode: "barcode3.png"
-  },
-  4: {
-    name: "Gaming Mouse",
-    images: ["product4a.jpg", "product4b.jpg"],
-    price: "R499",
-    specs: ["7200 DPI", "RGB Lighting", "Ergonomic Design", "6 Buttons"],
-    barcode: "barcode4.png"
-  },
-  5: {
-    name: "Portable Charger",
-    images: ["product5a.jpg", "product5b.jpg"],
-    price: "R349",
-    specs: ["10000mAh", "Fast Charging", "Dual USB Ports", "Slim Design"],
-    barcode: "barcode5.png"
-  }
+    1: {
+        name: "Wireless Headphones",
+        price: "R899",
+        image: "product1a.jpg",
+        description: "High-quality wireless headphones with noise cancellation.",
+        barcode: "1234567890123",
+        stock: 25,
+        weight: "250g",
+        dimensions: "18cm x 15cm x 8cm"
+    },
+    2: {
+        name: "Bluetooth Speaker",
+        price: "R1299",
+        image: "product2a.jpg",
+        description: "Portable Bluetooth speaker with powerful bass and waterproof design.",
+        barcode: "2345678901234",
+        stock: 15,
+        weight: "600g",
+        dimensions: "20cm x 10cm x 10cm"
+    },
+    3: {
+        name: "Smartwatch",
+        price: "R1499",
+        image: "product3a.jpg",
+        description: "Feature-rich smartwatch with health tracking and notifications.",
+        barcode: "3456789012345",
+        stock: 10,
+        weight: "50g",
+        dimensions: "4cm x 4cm x 1cm"
+    },
+    4: {
+        name: "Gaming Mouse",
+        price: "R699",
+        image: "product4a.jpg",
+        description: "RGB gaming mouse with adjustable DPI and programmable buttons.",
+        barcode: "4567890123456",
+        stock: 40,
+        weight: "120g",
+        dimensions: "12cm x 6cm x 4cm"
+    },
+    5: {
+        name: "Portable Charger",
+        price: "R499",
+        image: "product5a.jpg",
+        description: "10,000mAh portable power bank with fast charging.",
+        barcode: "5678901234567",
+        stock: 30,
+        weight: "200g",
+        dimensions: "10cm x 6cm x 2cm"
+    }
 };
 
-const id = new URLSearchParams(window.location.search).get("id");
-const product = products[id];
+if (products[id]) {
+    const p = products[id];
+    document.getElementById("product-details").innerHTML = `
+        <h1>${p.name}</h1>
+        <img src="${p.image}" alt="${p.name}">
+        <p class="description">${p.description}</p>
 
-if (!product) {
-  document.body.innerHTML = "<h1 style='text-align:center;'>Product Not Found</h1>";
+        <table>
+            <tr><th>Price</th><td>${p.price}</td></tr>
+            <tr><th>Stock</th><td>${p.stock} units</td></tr>
+            <tr><th>Barcode</th><td>${p.barcode}</td></tr>
+            <tr><th>Weight</th><td>${p.weight}</td></tr>
+            <tr><th>Dimensions</th><td>${p.dimensions}</td></tr>
+        </table>
+
+        <button onclick="alert('Thank you for purchasing ${p.name}!')">Buy Now</button>
+    `;
 } else {
-  document.getElementById("name").textContent = product.name;
-  document.getElementById("img1").src = product.images[0];
-  document.getElementById("img2").src = product.images[1];
-  document.getElementById("price").textContent = product.price;
-
-  product.specs.forEach(s => {
-    const li = document.createElement("li");
-    li.textContent = s;
-    document.getElementById("specs").appendChild(li);
-  });
-
-  document.getElementById("barcodeImg").src = product.barcode;
+    document.getElementById("product-details").innerHTML = "<h1>Product not found.</h1>";
 }
 </script>
 
