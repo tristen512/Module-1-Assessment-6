@@ -3,19 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Details</title>
+<title>Tech Store - Home</title>
 <style>
 body { font-family: Arial, sans-serif; background:#f2f2f2; margin:0; padding:0; }
-nav { background:#333; padding:10px; text-align:center; }
-nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
-.container { max-width:900px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.2); }
-img { width:300px; height:300px; object-fit:cover; border-radius:10px; display:block; margin:auto; }
-h1 { text-align:center; margin-top:10px; }
-table { width:80%; margin:20px auto; border-collapse:collapse; }
-th, td { border:1px solid #ccc; padding:10px; text-align:left; }
-th { background:#eee; }
-.description { text-align:center; width:80%; margin:20px auto; }
-button { display:block; margin:20px auto; padding:12px 25px; border:none; background:#28a745; color:white; font-size:16px; border-radius:5px; cursor:pointer; }
+nav { background:#333; padding:15px; text-align:center; }
+nav a { color:white; margin:0 20px; text-decoration:none; font-weight:bold; font-size:18px; }
+h1 { text-align:center; margin:20px 0; }
+.catalogue { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; padding:20px; }
+.product { background:white; width:220px; padding:15px; border-radius:10px; text-align:center; box-shadow:0 0 8px rgba(0,0,0,0.2); }
+.product img { width:100%; height:180px; object-fit:cover; border-radius:10px; }
+.product a { display:block; margin-top:10px; text-decoration:none; font-weight:bold; color:#333; }
 </style>
 </head>
 <body>
@@ -26,95 +23,36 @@ button { display:block; margin:20px auto; padding:12px 25px; border:none; backgr
   <a href="contact.html">Contact Us</a>
 </nav>
 
-<div class="container" id="product-details"></div>
+<h1>Our Product Catalogue</h1>
 
-<script>
-// FIXED: Using ?id= from your homepage
-const id = new URLSearchParams(window.location.search).get("id");
+<div class="catalogue">
 
-// Product database
-const products = {
-    1: {
-        name: "Wireless Headphones",
-        price: "R899",
-        image: "product1a.jpg",
-        description: "High-quality wireless headphones with noise cancellation.",
-        barcode: "1234567890123",
-        stock: 25,
-        weight: "250g",
-        dimensions: "18cm x 15cm x 8cm"
-    },
+  <div class="product">
+    <img src="product1a.jpg" alt="Wireless Headphones">
+    <a href="product.html?id=1">Wireless Headphones</a>
+  </div>
 
-    2: {
-        name: "Bluetooth Speaker",
-        price: "R1299",
-        image: "product2a.jpg",
-        description: "Portable Bluetooth speaker with crystal-clear sound and waterproof design.",
-        barcode: "2345678901234",
-        stock: 15,
-        weight: "600g",
-        dimensions: "20cm x 10cm x 10cm"
-    },
+  <div class="product">
+    <img src="product2a.jpg" alt="Bluetooth Speaker">
+    <a href="product.html?id=2">Bluetooth Speaker</a>
+  </div>
 
-    3: {
-        name: "Smartwatch",
-        price: "R1499",
-        image: "product3a.jpg",
-        description: "Stylish smartwatch with heart-rate monitoring and app notifications.",
-        barcode: "3456789012345",
-        stock: 10,
-        weight: "50g",
-        dimensions: "4cm x 4cm x 1cm"
-    },
+  <div class="product">
+    <img src="product3a.jpg" alt="Smartwatch">
+    <a href="product.html?id=3">Smartwatch</a>
+  </div>
 
-    4: {
-        name: "Gaming Mouse",
-        price: "R699",
-        image: "product4a.jpg",
-        description: "RGB gaming mouse with adjustable DPI and programmable buttons.",
-        barcode: "4567890123456",
-        stock: 40,
-        weight: "120g",
-        dimensions: "12cm x 6cm x 4cm"
-    },
+  <div class="product">
+    <img src="product4a.jpg" alt="Gaming Mouse">
+    <a href="product.html?id=4">Gaming Mouse</a>
+  </div>
 
-    5: {
-        name: "Portable Charger",
-        price: "R499",
-        image: "product5a.jpg",
-        description: "10,000mAh fast-charging portable power bank.",
-        barcode: "5678901234567",
-        stock: 30,
-        weight: "200g",
-        dimensions: "10cm x 6cm x 2cm"
-    }
-};
+  <div class="product">
+    <img src="product5a.jpg" alt="Portable Charger">
+    <a href="product.html?id=5">Portable Charger</a>
+  </div>
 
-// Render product
-if (products[id]) {
-
-    const p = products[id];
-
-    document.getElementById("product-details").innerHTML = `
-        <h1>${p.name}</h1>
-        <img src="${p.image}" alt="${p.name}">
-        <p class="description">${p.description}</p>
-
-        <table>
-            <tr><th>Price</th><td>${p.price}</td></tr>
-            <tr><th>Stock</th><td>${p.stock} units available</td></tr>
-            <tr><th>Barcode</th><td>${p.barcode}</td></tr>
-            <tr><th>Weight</th><td>${p.weight}</td></tr>
-            <tr><th>Dimensions</th><td>${p.dimensions}</td></tr>
-        </table>
-
-        <button onclick="alert('Thank you for purchasing ${p.name}!')">Buy Now</button>
-    `;
-
-} else {
-    document.getElementById("product-details").innerHTML = "<h1>Product not found.</h1>";
-}
-</script>
+</div>
 
 </body>
 </html>
