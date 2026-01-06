@@ -6,41 +6,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to Our Product Catalogue</h1>
 
-    <div class="products">
+<h1>Our Products</h1>
+<div id="catalogue"></div>
 
-        <a href="product1.html">
-            <img src="product1_folder/product1a.jpg"
+<script>
+fetch('products.json')
+.then(response => response.json())
+.then(products => {
+    const catalogue = document.getElementById('catalogue');
+    products.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+            <h3>${p.name}</h3>
+            <img src="images/${p.folder}/img1.jpg" 
                  onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
-            <h3>Wireless Headphones</h3>
-        </a>
-
-        <a href="product2.html">
-            <img src="product2_folder/product2a.jpg"
-                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
-            <h3>Bluetooth Speaker</h3>
-        </a>
-
-        <a href="product3.html">
-            <img src="product3_folder/product3a.jpg"
-                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
-            <h3>Smart Watch</h3>
-        </a>
-
-        <a href="product4.html">
-            <img src="product4_folder/product4a.jpg"
-                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
-            <h3>Gaming Mouse</h3>
-        </a>
-
-        <a href="product5.html">
-            <img src="product5_folder/product5a.jpg"
-                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
-            <h3>Mechanical Keyboard</h3>
-        </a>
-
-    </div>
+            <p>Price: ${p.price}</p>
+            <p>Stock: ${p.stock}</p>
+            <p>${p.description}</p>
+        `;
+        catalogue.appendChild(div);
+    });
+});
+</script>
 
 </body>
 </html>
