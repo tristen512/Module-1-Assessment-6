@@ -21,7 +21,7 @@ h1 { margin-top: 20px; }
 <div class="products" id="product-container"></div>
 
 <script>
-// Single source of truth
+// SINGLE SOURCE OF TRUTH: products object
 const products = {
     1: { name: "Wireless Headphones", price: 899, image: "product1a.jpg" },
     2: { name: "Smartwatch", price: 1499, image: "product2a.jpg" },
@@ -30,11 +30,12 @@ const products = {
     5: { name: "Portable Charger", price: 499, image: "product5a.jpg" }
 };
 
-// Homepage order (matches your requested order)
+// HOMEPAGE ORDER: Wireless Headphones, Bluetooth Speaker, Smartwatch, Gaming Mouse, Portable Charger
 const homepageOrder = [1,4,2,3,5];
 
 const container = document.getElementById("product-container");
 
+// Build homepage dynamically
 homepageOrder.forEach(id => {
     const product = products[id];
     const div = document.createElement("div");
@@ -49,5 +50,6 @@ homepageOrder.forEach(id => {
     container.appendChild(div);
 });
 </script>
+
 </body>
 </html>
