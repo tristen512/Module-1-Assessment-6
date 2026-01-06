@@ -1,59 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Catalogue</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    header { background: #333; color: #fff; padding: 1rem; text-align: center; }
-    nav a { color: #fff; margin: 0 1rem; text-decoration: none; }
-    .products { display: flex; flex-wrap: wrap; justify-content: center; padding: 2rem; gap: 2rem; }
-    .product-card { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; width: 200px; text-align: center; }
-    .product-card img { width: 100%; height: auto; cursor: pointer; }
-    .product-card h3 { margin: 0.5rem 0; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Our Products</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<div class="product-card">
+  <a href="product.html?product=1">
+    <img src="product1a.jpg" alt="Wireless Headphones">
+    <h3>Wireless Headphones</h3>
+    <p>Price: R59.99</p>
+  </a>
+</div>
 
-  <div class="products">
-    <div class="product-card">
-      <img src="product1a.jpg" alt="Wireless Headphones" onclick="window.location.href='product.html?product=1'">
-      <h3>Wireless Headphones</h3>
-      <p>Price: $59.99</p>
-    </div>
+<div class="product-card">
+  <a href="product.html?product=2">
+    <img src="product2a.jpg" alt="Smartwatch">
+    <h3>Smartwatch</h3>
+    <p>Price: R79.99</p>
+  </a>
+</div>
 
-    <div class="product-card">
-      <img src="product2a.jpg" alt="Smartwatch" onclick="window.location.href='product.html?product=2'">
-      <h3>Smartwatch</h3>
-      <p>Price: $79.99</p>
-    </div>
+<div class="product-card">
+  <a href="product.html?product=3">
+    <img src="product3a.jpg" alt="Gaming Mouse">
+    <h3>Gaming Mouse</h3>
+    <p>Price: R39.99</p>
+  </a>
+</div>
 
-    <div class="product-card">
-      <img src="product3a.jpg" alt="Gaming Mouse" onclick="window.location.href='product.html?product=3'">
-      <h3>Gaming Mouse</h3>
-      <p>Price: $39.99</p>
-    </div>
+<div class="product-card">
+  <a href="product.html?product=4">
+    <img src="product4a.jpg" alt="Bluetooth Speaker">
+    <h3>Bluetooth Speaker</h3>
+    <p>Price: R49.99</p>
+  </a>
+</div>
 
-    <div class="product-card">
-      <img src="product4a.jpg" alt="Bluetooth Speaker" onclick="window.location.href='product.html?product=4'">
-      <h3>Bluetooth Speaker</h3>
-      <p>Price: $49.99</p>
-    </div>
-
-    <div class="product-card">
-      <img src="product5a.jpg" alt="Portable Charger" onclick="window.location.href='product.html?product=5'">
-      <h3>Portable Charger</h3>
-      <p>Price: $29.99</p>
-    </div>
-  </div>
-</body>
-</html>
+<div class="product-card">
+  <a href="product.html?product=5">
+    <img src="product5a.jpg" alt="Portable Charger">
+    <h3>Portable Charger</h3>
+    <p>Price: R29.99</p>
+  </a>
+</div>
