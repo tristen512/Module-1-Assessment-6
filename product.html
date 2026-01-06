@@ -5,114 +5,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Details</title>
 <style>
-body { font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5; }
-img { width: 300px; height: 300px; object-fit: contain; display: block; margin: 20px auto; }
-table { margin: 20px auto; border-collapse: collapse; width: 70%; }
-th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-th { background-color: #eee; }
-button { display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background-color: #28a745; color: white; }
-h1 { text-align: center; }
-.description { text-align: center; margin: 20px auto; width: 70%; }
+body { font-family: Arial, sans-serif; background:#f2f2f2; margin:0; padding:0; }
+nav { background:#333; padding:10px; text-align:center; }
+nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+.container { max-width:800px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.2); }
+.product-images { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+.product-images img { width:250px; border-radius:10px; }
+.barcode { margin-top:20px; text-align:center; }
 </style>
 </head>
 <body>
 
-<div id="product-details"></div>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact Us</a>
+</nav>
+
+<div class="container">
+  <h1 id="name"></h1>
+  <div class="product-images">
+    <img id="img1">
+    <img id="img2">
+  </div>
+
+  <h3>Price: <span id="price"></span></h3>
+
+  <h3>Product Specifications:</h3>
+  <ul id="specs"></ul>
+
+  <div class="barcode">
+    <h3>Barcode:</h3>
+    <img id="barcodeImg" style="width:200px;">
+  </div>
+</div>
 
 <script>
-// PRODUCTS OBJECT: add real tech-store info
 const products = {
-    1: { 
-        name: "Wireless Headphones",
-        price: 899,
-        stock: 25,
-        description: "High-quality wireless headphones with noise cancellation and long battery life.",
-        image: "product1b.jpg",
-        weight: "250g",
-        dimensions: "18cm x 15cm x 8cm",
-        barcode: "1234567890123",
-        brand: "SoundMax",
-        color: "Black",
-        model: "SM-WH100"
-    },
-    2: { 
-        name: "Bluetooth Speaker",
-        price: 1299,
-        stock: 15,
-        description: "Portable Bluetooth speaker with crystal-clear sound, 12-hour battery life, and waterproof design.",
-        image: "product2b.jpg",
-        weight: "600g",
-        dimensions: "20cm x 10cm x 10cm",
-        barcode: "4567890123456",
-        brand: "BeatBox",
-        color: "Red",
-        model: "BB-S300"
-    },
-    3: { 
-        name: "Smartwatch",
-        price: 1499,
-        stock: 10,
-        description: "Stylish smartwatch with heart-rate monitor, step counter, and notifications.",
-        image: "product3b.jpg",
-        weight: "50g",
-        dimensions: "4cm x 4cm x 1cm",
-        barcode: "2345678901234",
-        brand: "TimeTech",
-        color: "Silver",
-        model: "TT-SW1"
-    },
-    4: { 
-        name: "Gaming Mouse",
-        price: 699,
-        stock: 40,
-        description: "Ergonomic gaming mouse with adjustable DPI, RGB lighting, and programmable buttons.",
-        image: "product4b.jpg",
-        weight: "120g",
-        dimensions: "12cm x 6cm x 4cm",
-        barcode: "3456789012345",
-        brand: "GamerPro",
-        color: "Black",
-        model: "GP-MX7"
-    },
-    5: { 
-        name: "Portable Charger",
-        price: 499,
-        stock: 30,
-        description: "Compact 10000mAh portable charger for phones and tablets, fast-charging support.",
-        image: "product5b.jpg",
-        weight: "200g",
-        dimensions: "10cm x 6cm x 2cm",
-        barcode: "5678901234567",
-        brand: "PowerGo",
-        color: "White",
-        model: "PG-10000"
-    }
+  1: {
+    name: "Wireless Headphones",
+    images: ["product1a.jpg", "product1b.jpg"],
+    price: "R899",
+    specs: ["Bluetooth 5.0", "Noise Cancellation", "20h Battery Life", "Fast Charging"],
+    barcode: "barcode1.png"
+  },
+  2: {
+    name: "Bluetooth Speaker",
+    images: ["product2a.jpg", "product2b.jpg"],
+    price: "R599",
+    specs: ["10W Output", "Waterproof IPX5", "6h Playback", "Bass Boost"],
+    barcode: "barcode2.png"
+  },
+  3: {
+    name: "Smartwatch",
+    images: ["product3a.jpg", "product3b.jpg"],
+    price: "R1299",
+    specs: ["Heart Rate Monitor", "Bluetooth Calls", "Step Counter", "Sleep Tracking"],
+    barcode: "barcode3.png"
+  },
+  4: {
+    name: "Gaming Mouse",
+    images: ["product4a.jpg", "product4b.jpg"],
+    price: "R499",
+    specs: ["7200 DPI", "RGB Lighting", "Ergonomic Design", "6 Buttons"],
+    barcode: "barcode4.png"
+  },
+  5: {
+    name: "Portable Charger",
+    images: ["product5a.jpg", "product5b.jpg"],
+    price: "R349",
+    specs: ["10000mAh", "Fast Charging", "Dual USB Ports", "Slim Design"],
+    barcode: "barcode5.png"
+  }
 };
 
-// Get product ID from URL
-const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get('product');
+const id = new URLSearchParams(window.location.search).get("id");
+const product = products[id];
 
-if(products[productId]){
-    const p = products[productId];
-    document.getElementById("product-details").innerHTML = `
-        <h1>${p.name}</h1>
-        <img src="${p.image}" alt="${p.name}">
-        <p class="description">${p.description}</p>
-        <table>
-            <tr><th>Price</th><td>R${p.price}</td></tr>
-            <tr><th>Stock</th><td>${p.stock} available</td></tr>
-            <tr><th>Brand</th><td>${p.brand}</td></tr>
-            <tr><th>Model</th><td>${p.model}</td></tr>
-            <tr><th>Color</th><td>${p.color}</td></tr>
-            <tr><th>Weight</th><td>${p.weight}</td></tr>
-            <tr><th>Dimensions</th><td>${p.dimensions}</td></tr>
-            <tr><th>Barcode</th><td>${p.barcode}</td></tr>
-        </table>
-        <button onclick="alert('Thank you for purchasing ${p.name}!')">Buy Now</button>
-    `;
-}else{
-    document.getElementById("product-details").innerHTML = "<h1>Product not found.</h1>";
+if (!product) {
+  document.body.innerHTML = "<h1 style='text-align:center;'>Product Not Found</h1>";
+} else {
+  document.getElementById("name").textContent = product.name;
+  document.getElementById("img1").src = product.images[0];
+  document.getElementById("img2").src = product.images[1];
+  document.getElementById("price").textContent = product.price;
+
+  product.specs.forEach(s => {
+    const li = document.createElement("li");
+    li.textContent = s;
+    document.getElementById("specs").appendChild(li);
+  });
+
+  document.getElementById("barcodeImg").src = product.barcode;
 }
 </script>
 
