@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    nav a { margin: 0 10px; text-decoration: none; color: blue; }
-    form { max-width: 400px; }
-    input, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+<style>
+body { font-family: Arial; background:#f2f2f2; margin:0; }
+nav { background:#333; padding:10px; text-align:center; }
+nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+.container { max-width:900px; margin:40px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.2); }
+form { display:flex; flex-direction:column; gap:15px; margin-top:20px; }
+input, textarea { padding:12px; border-radius:8px; border:1px solid #ccc; }
+button { padding:12px; background:#28a745; color:white; border:none; border-radius:8px; cursor:pointer; }
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
 
-  <h1>Contact Us</h1>
-  <form onsubmit="submitForm(event)">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea placeholder="Your Message" rows="5" required></textarea>
-    <button type="submit">Send</button>
-  </form>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact Us</a>
+</nav>
 
-  <script>
-    function submitForm(e) {
-      e.preventDefault();
-      alert('Message sent! (This is a demo form, no actual sending)');
-      e.target.reset();
-    }
-  </script>
+<div class="container">
+<h1>Contact Us</h1>
+<p>Have questions? We're here to help!</p>
+
+<p><strong>Email:</strong> support@techstore.com</p>
+<p><strong>Phone:</strong> +27 12 345 6789</p>
+<p><strong>Address:</strong> 123 Tech Street, Johannesburg, South Africa</p>
+
+<form onsubmit="alert('Thank you! Your message has been sent.'); return false;">
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <textarea rows="5" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+</div>
+
 </body>
 </html>
