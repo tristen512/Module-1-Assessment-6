@@ -3,47 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Catalogue</title>
+  <title>Product Catalog</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
+    .product { display: inline-block; margin: 10px; text-align: center; }
+    .product img { width: 200px; height: 200px; object-fit: cover; cursor: pointer; }
     nav a { margin: 0 10px; text-decoration: none; color: blue; }
-    .product { display: inline-block; margin: 20px; text-align: center; }
-    .product img { width: 200px; height: 200px; object-fit: cover; }
   </style>
 </head>
 <body>
+  <h1>Our Products</h1>
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <h1>Our Products</h1>
-
-  <div class="product">
-    <a href="product-earbuds.html"><img src="earbuds1.jpg" alt="Wireless Earbuds" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"></a>
-    <h3>Wireless Earbuds</h3>
+  <div class="products">
+    <div class="product">
+      <img src="product1a.jpg" onclick="showProduct(1)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Product 1">
+      <p>Product 1</p>
+    </div>
+    <div class="product">
+      <img src="product2a.jpg" onclick="showProduct(2)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Product 2">
+      <p>Product 2</p>
+    </div>
+    <div class="product">
+      <img src="product3a.jpg" onclick="showProduct(3)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Product 3">
+      <p>Product 3</p>
+    </div>
+    <div class="product">
+      <img src="product4a.jpg" onclick="showProduct(4)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Product 4">
+      <p>Product 4</p>
+    </div>
+    <div class="product">
+      <img src="product5a.jpg" onclick="showProduct(5)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Portable Charger">
+      <p>Portable Charger</p>
+    </div>
   </div>
 
-  <div class="product">
-    <a href="product-smartwatch.html"><img src="smartwatch1.jpg" alt="Smart Watch" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"></a>
-    <h3>Smart Watch</h3>
-  </div>
-
-  <div class="product">
-    <a href="product-mouse.html"><img src="mouse1.jpg" alt="Gaming Mouse" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"></a>
-    <h3>Gaming Mouse</h3>
-  </div>
-
-  <div class="product">
-    <a href="product-speaker.html"><img src="speaker1.jpg" alt="Bluetooth Speaker" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"></a>
-    <h3>Bluetooth Speaker</h3>
-  </div>
-
-  <div class="product">
-    <a href="product-charger.html"><img src="charger1.jpg" alt="Portable Charger" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"></a>
-    <h3>Portable Charger</h3>
-  </div>
+  <script>
+    function showProduct(id) {
+      // Save product ID in localStorage to pass to product.html
+      localStorage.setItem('productID', id);
+      window.location.href = 'product.html';
+    }
+  </script>
 </body>
 </html>
-
