@@ -1,109 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        img {
-            width: 300px;
-            height: 300px;
-            object-fit: contain;
-            display: block;
-            margin: 20px auto;
-        }
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 60%;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #eee;
-        }
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #28a745;
-            color: white;
-        }
-        h1 {
-            text-align: center;
-        }
-        .description {
-            text-align: center;
-            margin: 20px auto;
-            width: 60%;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+<style>
+body { font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5; }
+img { width: 300px; height: 300px; object-fit: contain; display: block; margin: 20px auto; }
+table { margin: 20px auto; border-collapse: collapse; width: 60%; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+th { background-color: #eee; }
+button { display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background-color: #28a745; color: white; }
+h1 { text-align: center; }
+.description { text-align: center; margin: 20px auto; width: 60%; }
+</style>
 </head>
 <body>
-    <div id="product-details"></div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('product');
+<div id="product-details"></div>
 
-        const products = {
-            1: { 
-                name: "Wireless Headphones", price: 899, stock: 25, 
-                description: "High-quality wireless headphones with noise cancellation and long battery life.", 
-                image: "product1a.jpg", weight:"250g", dimensions:"18cm x 15cm x 8cm", barcode:"1234567890123" 
-            },
-            2: { 
-                name: "Smartwatch", price: 1499, stock: 10, 
-                description: "Stylish smartwatch with heart-rate monitor, step counter, and notifications.", 
-                image: "product2a.jpg", weight:"50g", dimensions:"4cm x 4cm x 1cm", barcode:"2345678901234" 
-            },
-            3: { 
-                name: "Gaming Mouse", price: 699, stock: 40, 
-                description: "Ergonomic gaming mouse with adjustable DPI, RGB lighting, and programmable buttons.", 
-                image: "product3a.jpg", weight:"120g", dimensions:"12cm x 6cm x 4cm", barcode:"3456789012345" 
-            },
-            4: { 
-                name: "Bluetooth Speaker", price: 1299, stock: 15, 
-                description: "Portable Bluetooth speaker with crystal-clear sound, 12-hour battery life, and waterproof design.", 
-                image: "product4a.jpg", weight:"600g", dimensions:"20cm x 10cm x 10cm", barcode:"4567890123456" 
-            },
-            5: { 
-                name: "Portable Charger", price: 499, stock: 30, 
-                description: "Compact 10000mAh portable charger for phones and tablets, fast-charging support.", 
-                image: "product5a.jpg", weight:"200g", dimensions:"10cm x 6cm x 2cm", barcode:"5678901234567" 
-            }
-        };
+<script>
+// Same product object
+const products = {
+    1: { name: "Wireless Headphones", price: 899, stock: 25, description: "High-quality wireless headphones with noise cancellation and long battery life.", image: "product1a.jpg", weight:"250g", dimensions:"18cm x 15cm x 8cm", barcode:"1234567890123" },
+    2: { name: "Smartwatch", price: 1499, stock: 10, description: "Stylish smartwatch with heart-rate monitor, step counter, and notifications.", image: "product2a.jpg", weight:"50g", dimensions:"4cm x 4cm x 1cm", barcode:"2345678901234" },
+    3: { name: "Gaming Mouse", price: 699, stock: 40, description: "Ergonomic gaming mouse with adjustable DPI, RGB lighting, and programmable buttons.", image: "product3a.jpg", weight:"120g", dimensions:"12cm x 6cm x 4cm", barcode:"3456789012345" },
+    4: { name: "Bluetooth Speaker", price: 1299, stock: 15, description: "Portable Bluetooth speaker with crystal-clear sound, 12-hour battery life, and waterproof design.", image: "product4a.jpg", weight:"600g", dimensions:"20cm x 10cm x 10cm", barcode:"4567890123456" },
+    5: { name: "Portable Charger", price: 499, stock: 30, description: "Compact 10000mAh portable charger for phones and tablets, fast-charging support.", image: "product5a.jpg", weight:"200g", dimensions:"10cm x 6cm x 2cm", barcode:"5678901234567" }
+};
 
-        if (products[productId]) {
-            const product = products[productId];
-            document.getElementById("product-details").innerHTML = `
-                <h1>${product.name}</h1>
-                <img src="${product.image}" alt="${product.name}">
-                <p class="description">${product.description}</p>
-                <table>
-                  <tr><th>Price</th><td>R${product.price}</td></tr>
-                  <tr><th>Stock</th><td>${product.stock} available</td></tr>
-                  <tr><th>Weight</th><td>${product.weight}</td></tr>
-                  <tr><th>Dimensions</th><td>${product.dimensions}</td></tr>
-                  <tr><th>Barcode</th><td>${product.barcode}</td></tr>
-                </table>
-                <button onclick="alert('Thank you for purchasing ${product.name}!')">Buy Now</button>
-            `;
-        } else {
-            document.getElementById("product-details").innerHTML = "<h1>Product not found.</h1>";
-        }
-    </script>
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('product');
+
+if(products[productId]){
+    const p = products[productId];
+    document.getElementById("product-details").innerHTML = `
+        <h1>${p.name}</h1>
+        <img src="${p.image}" alt="${p.name}">
+        <p class="description">${p.description}</p>
+        <table>
+            <tr><th>Price</th><td>R${p.price}</td></tr>
+            <tr><th>Stock</th><td>${p.stock} available</td></tr>
+            <tr><th>Weight</th><td>${p.weight}</td></tr>
+            <tr><th>Dimensions</th><td>${p.dimensions}</td></tr>
+            <tr><th>Barcode</th><td>${p.barcode}</td></tr>
+        </table>
+        <button onclick="alert('Thank you for purchasing ${p.name}!')">Buy Now</button>
+    `;
+}else{
+    document.getElementById("product-details").innerHTML = "<h1>Product not found.</h1>";
+}
+</script>
 </body>
 </html>
