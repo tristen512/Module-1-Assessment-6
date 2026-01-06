@@ -7,7 +7,8 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     nav a { margin: 0 10px; text-decoration: none; color: blue; }
-    .product-images img { width: 300px; height: 300px; margin: 10px; object-fit: cover; }
+    img { width: 300px; height: 300px; object-fit: cover; margin: 10px; }
+    .images { display: flex; flex-wrap: wrap; }
   </style>
 </head>
 <body>
@@ -17,36 +18,75 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <h1 id="productTitle">Product Title</h1>
-  <p id="productPrice"></p>
-  <p id="productStock"></p>
-
-  <div class="product-images" id="productImages"></div>
+  <div id="product-container">
+    <!-- Product info will load here -->
+  </div>
 
   <script>
+    // List of products with details
     const products = {
-      1: { title: 'Wireless Headphones', price: 'R170', stock: '25', images: ['product1a.jpg','product1b.jpg','product1c.jpg'] },
-      2: { title: 'Bluetooth Speaker', price: 'R270', stock: '36', images: ['product2a.jpg','product2b.jpg','product2c.jpg'] },
-      3: { title: 'Smartwatch', price: 'R136', stock: '12', images: ['product3a.jpg','product3b.jpg','product3c.jpg'] },
-      4: { title: 'LED Gming mouse', price: 'R354', stock: '23', images: ['product4a.jpg','product4b.jpg','product4c.jpg'] },
-      5: { title: 'Portable Charger', price: 'R300', stock: '53', images: ['product5a.jpg','product5b.jpg','product5c.jpg'] }
+      earbuds: {
+        name: "Wireless Earbuds",
+        description: "High-quality Bluetooth earbuds with long battery life and noise cancellation.",
+        price: "R499",
+        stock: "15",
+        images: ["earbuds1.jpg", "earbuds2.jpg"]
+      },
+      smartwatch: {
+        name: "Smart Watch",
+        description: "Track your fitness, monitor heart rate, and stay connected with this sleek smartwatch.",
+        price: "R1299",
+        stock: "10",
+        images: ["smartwatch1.jpg", "smartwatch2.jpg"]
+      },
+      mouse: {
+        name: "Gaming Mouse",
+        description: "Ergonomic gaming mouse with customizable DPI and RGB lighting.",
+        price: "R349",
+        stock: "20",
+        images: ["mouse1.jpg", "mouse2.jpg"]
+      },
+      speaker: {
+        name: "Bluetooth Speaker",
+        description: "Portable Bluetooth speaker with crystal-clear sound and long-lasting battery.",
+        price: "R799",
+        stock: "12",
+        images: ["speaker1.jpg", "speaker2.jpg"]
+      },
+      charger: {
+        name: "Portable Charger",
+        description: "Compact 10000mAh power bank, perfect for charging devices on the go.",
+        price: "R299",
+        stock: "25",
+        images: ["charger1.jpg", "charger2.jpg"]
+      }
     };
 
-    const productID = localStorage.getItem('productID');
-    const product = products[productID];
+    // Get product key from URL (e.g., product.html?item=charger)
+    const urlParams = new URLSearchParams(window.location.search);
+    const productKey = urlParams.get('item');
 
-    document.getElementById('productTitle').innerText = product.title;
-    document.getElementById('productPrice').innerText = 'Price: ' + product.price;
-    document.getElementById('productStock').innerText = 'Stock: ' + product.stock;
+    const container = document.getElementById("product-container");
 
-    const container = document.getElementById('productImages');
-    product.images.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = product.title;
-      img.onerror = () => { img.src = 'https://via.placeholder.com/300?text=No+Image'; };
-      container.appendChild(img);
-    });
+    if (products[productKey]) {
+      const product = products[productKey];
+
+      let html = `<h1>${product.name}</h1>`;
+      html += `<p>${product.description}</p>`;
+      html += `<p>Price: ${product.price}</p>`;
+      html += `<p>Stock: ${product.stock}</p>`;
+      html += `<div class="images">`;
+
+      product.images.forEach(img => {
+        html += `<img src="${img}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300?text=No+Image'">`;
+      });
+
+      html += `</div>`;
+
+      container.innerHTML = html;
+    } else {
+      container.innerHTML = "<p>Product not found.</p>";
+    }
   </script>
 </body>
 </html>
