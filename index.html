@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Product Catalogue</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Product Catalogue</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -11,23 +11,27 @@
 <div id="catalogue"></div>
 
 <script>
-fetch('products.json')
-.then(response => response.json())
-.then(products => {
-    const catalogue = document.getElementById('catalogue');
-    products.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'product';
-        div.innerHTML = `
-            <h3>${p.name}</h3>
-            <img src="images/${p.folder}/img1.jpg" 
-                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
-            <p>Price: ${p.price}</p>
-            <p>Stock: ${p.stock}</p>
-            <p>${p.description}</p>
-        `;
-        catalogue.appendChild(div);
-    });
+const products = [
+  {id:1,name:"Wireless Headphones",folder:"product1",price:"R499",stock:14,description:"Comfortable wireless headphones with deep bass."},
+  {id:2,name:"Bluetooth Speaker",folder:"product2",price:"R299",stock:22,description:"Compact Bluetooth speaker with 10-hour battery life."},
+  {id:3,name:"Smartwatch",folder:"product3",price:"R699",stock:10,description:"Modern smartwatch with fitness tracking."},
+  {id:4,name:"LED Gaming Mouse",folder:"product4",price:"R199",stock:30,description:"Comfortable gaming mouse with RGB lighting."},
+  {id:5,name:"Portable Charger",folder:"product5",price:"R399",stock:12,description:"High-capacity portable charger."}
+];
+
+const catalogue = document.getElementById('catalogue');
+products.forEach(p => {
+  const div = document.createElement('div');
+  div.className = 'product';
+  div.innerHTML = `
+    <h3>${p.name}</h3>
+    <a href="product.html?id=${p.id}">
+      <img src="images/${p.folder}/${p.folder}a.jpg" 
+           onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Image+Not+Found';">
+    </a>
+    <p>Price: ${p.price}</p>
+  `;
+  catalogue.appendChild(div);
 });
 </script>
 
