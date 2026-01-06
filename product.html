@@ -10,11 +10,11 @@
 
 <script>
 const products = [
-  {id:1,name:"Wireless Headphones",folder:"product1",price:"R499",stock:14,description:"Comfortable wireless headphones."},
-  {id:2,name:"Bluetooth Speaker",folder:"product2",price:"R299",stock:20,description:"Portable Bluetooth speaker."},
-  {id:3,name:"Smartwatch",folder:"product3",price:"R699",stock:10,description:"Track your fitness and notifications."},
-  {id:4,name:"LED Gaming Mouse",folder:"product4",price:"R199",stock:15,description:"RGB LED gaming mouse."},
-  {id:5,name:"Portable Charger",folder:"product5",price:"R399",stock:12,description:"High-capacity portable charger."}
+  {id:1,name:"Wireless Headphones",price:"R499",stock:14,description:"Comfortable wireless headphones."},
+  {id:2,name:"Bluetooth Speaker",price:"R299",stock:20,description:"Portable Bluetooth speaker."},
+  {id:3,name:"Smartwatch",price:"R699",stock:10,description:"Track your fitness and notifications."},
+  {id:4,name:"LED Gaming Mouse",price:"R199",stock:15,description:"RGB LED gaming mouse."},
+  {id:5,name:"Portable Charger",price:"R399",stock:12,description:"High-capacity portable charger."}
 ];
 
 function getQueryParam(name) {
@@ -30,9 +30,9 @@ if(product){
   container.innerHTML = `
     <h1>${product.name}</h1>
     <div>
-      <img src="images/${product.folder}/${product.folder}a.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
-      <img src="images/${product.folder}/${product.folder}b.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
-      <img src="images/${product.folder}/${product.folder}c.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
+      <img src="product${id}a.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
+      <img src="product${id}b.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
+      <img src="product${id}c.jpg" onerror="this.src='https://via.placeholder.com/400?text=No+Image';">
     </div>
     <p>Price: ${product.price}</p>
     <p>Stock: ${product.stock}</p>
