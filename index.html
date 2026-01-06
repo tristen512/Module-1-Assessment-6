@@ -3,51 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Catalog</title>
+  <title>Product Catalogue</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    .product { display: inline-block; margin: 10px; text-align: center; }
-    .product img { width: 200px; height: 200px; object-fit: cover; cursor: pointer; }
-    nav a { margin: 0 10px; text-decoration: none; color: blue; }
+    body { 
+      font-family: Arial, sans-serif; 
+      padding: 20px; 
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: blue;
+      font-size: 18px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .product-card {
+      width: 230px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #aaa;
+    }
+
+    .product-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-card a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
-  <h1>Our Products</h1>
+
+  <!-- NAVIGATION -->
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <div class="products">
-    <div class="product">
-      <img src="product1a.jpg" onclick="showProduct(1)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Wireless Headphones">
-      <p>Wireless Headphones</p>
+  <h1>Our Product Catalogue</h1>
+
+  <div class="product-grid">
+
+    <!-- PRODUCT 1 -->
+    <div class="product-card">
+      <a href="product.html?item=earbuds">
+        <img src="earbuds1.jpg" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+        Wireless Earbuds
+      </a>
     </div>
-    <div class="product">
-      <img src="product2a.jpg" onclick="showProduct(2)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt=">Bluetooth Speaker">
-      <p>Bluetooth Speaker</p>
+
+    <!-- PRODUCT 2 -->
+    <div class="product-card">
+      <a href="product.html?item=smartwatch">
+        <img src="smartwatch1.jpg" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+        Smart Watch
+      </a>
     </div>
-    <div class="product">
-      <img src="product3a.jpg" onclick="showProduct(3)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Smartwatch">
-      <p>Smartwatch</p>
+
+    <!-- PRODUCT 3 -->
+    <div class="product-card">
+      <a href="product.html?item=mouse">
+        <img src="mouse1.jpg" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+        Gaming Mouse
+      </a>
     </div>
-    <div class="product">
-      <img src="product4a.jpg" onclick="showProduct(4)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="LED Gaming Mouse">
-      <p>LED Gaming Mouse</p>
+
+    <!-- PRODUCT 4 -->
+    <div class="product-card">
+      <a href="product.html?item=speaker">
+        <img src="speaker1.jpg" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+        Bluetooth Speaker
+      </a>
     </div>
-    <div class="product">
-      <img src="product5a.jpg" onclick="showProduct(5)" onerror="this.src='https://via.placeholder.com/200?text=No+Image';" alt="Portable Charger">
-      <p>Portable Charger</p>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card">
+      <a href="product.html?item=charger">
+        <img src="charger1.jpg" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+        Portable Charger
+      </a>
     </div>
+
   </div>
 
-  <script>
-    function showProduct(id) {
-      // Save product ID in localStorage to pass to product.html
-      localStorage.setItem('productID', id);
-      window.location.href = 'product.html';
-    }
-  </script>
 </body>
 </html>
