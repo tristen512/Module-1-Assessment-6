@@ -11,23 +11,23 @@
 
 <script>
 const products = [
-  {id:1,name:"Wireless Headphones",folder:"product1",price:"R499"},
-  {id:2,name:"Bluetooth Speaker",folder:"product2",price:"R299"},
-  {id:3,name:"Smartwatch",folder:"product3",price:"R699"},
-  {id:4,name:"LED Gaming Mouse",folder:"product4",price:"R199"},
-  {id:5,name:"Portable Charger",folder:"product5",price:"R399"}
+  {id:1,name:"Wireless Headphones",price:"R499"},
+  {id:2,name:"Bluetooth Speaker",price:"R299"},
+  {id:3,name:"Smartwatch",price:"R699"},
+  {id:4,name:"LED Gaming Mouse",price:"R199"},
+  {id:5,name:"Portable Charger",price:"R399"}
 ];
 
 const catalogue = document.getElementById('catalogue');
 
-products.forEach(p => {
+products.forEach((p,i) => {
   const div = document.createElement('div');
   div.className = 'product';
   div.innerHTML = `
     <h3>${p.name}</h3>
-    <a href="product.html?id=${p.id}">
-      <img src="images/${p.folder}/${p.folder}a.jpg"
-           alt="${p.name}"
+    <a href="product.html?id=${i+1}">
+      <img src="product${i+1}a.jpg" 
+           alt="${p.name}" 
            onerror="this.onerror=null;this.src='https://via.placeholder.com/200?text=No+Image';">
     </a>
     <p>Price: ${p.price}</p>
