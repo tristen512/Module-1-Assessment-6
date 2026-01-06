@@ -1,80 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
-    <style>
-        body { font-family: Arial, sans-serif; background:#f7f7f7; padding:20px; }
-        .container {
-            max-width:700px; 
-            margin:auto; 
-            background:white; 
-            padding:20px; 
-            border-radius:10px;
-            box-shadow:0 2px 8px rgba(0,0,0,0.2);
-        }
-        img {
-            width:100%; 
-            height:300px; 
-            object-fit:cover; 
-            border-radius:10px;
-        }
-        table {
-            width:100%; 
-            border-collapse:collapse; 
-            margin-top:20px;
-        }
-        table, th, td {
-            border:1px solid #ccc; 
-            padding:10px;
-        }
-        .buy-btn {
-            display:block;
-            width:100%;
-            padding:12px;
-            background:#28a745;
-            color:white;
-            text-align:center;
-            font-size:18px;
-            border-radius:8px;
-            margin-top:20px;
-        }
-        a { text-decoration:none; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header { background: #333; color: #fff; padding: 1rem; text-align: center; }
+    nav a { color: #fff; margin: 0 1rem; text-decoration: none; }
+    .product-container { padding: 2rem; display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    .product-image { flex: 1; min-width: 250px; }
+    .product-image img { width: 100%; height: auto; }
+    .product-info { flex: 1; min-width: 250px; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    button { background: #28a745; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>Product Details</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<a href="index.html">← Back</a>
+  <div class="product-container" id="productContainer">
+    <!-- Product details will load here -->
+  </div>
 
-<div class="container">
-    <h1 id="name"></h1>
-    <img id="image" src="" onerror="this.src='https://via.placeholder.com/400'">
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
 
-    <p><strong>Price:</strong> R<span id="price"></span></p>
-    <p><strong>Stock:</strong> <span id="stock"></span></p>
-    <p id="desc"></p>
+    const products = {
+      1: {
+        name: "Wireless Headphones",
+        price: "$59.99",
+        stock: 15,
+        description: "High-quality wireless headphones with noise cancellation.",
+        image: "product1a.jpg",
+        info: {
+          Weight: "250g",
+          Dimensions: "20x15x5 cm",
+          Barcode: "1234567890"
+        }
+      },
+      2: {
+        name: "Smartwatch",
+        price: "$79.99",
+        stock: 10,
+        description: "Stylish smartwatch with heart rate monitor and GPS.",
+        image: "product2a.jpg",
+        info: {
+          Weight: "60g",
+          Dimensions: "4x4x1 cm",
+          Barcode: "2345678901"
+        }
+      },
+      3: {
+        name: "Gaming Mouse",
+        price: "$39.99",
+        stock: 25,
+        description: "Ergonomic gaming mouse with RGB lights and high precision.",
+        image: "product3a.jpg",
+        info: {
+          Weight: "120g",
+          Dimensions: "12x6x4 cm",
+          Barcode: "3456789012"
+        }
+      },
+      4: {
+        name: "Bluetooth Speaker",
+        price: "$49.99",
+        stock: 20,
+        description: "Portable Bluetooth speaker with crystal-clear sound.",
+        image: "product4a.jpg",
+        info: {
+          Weight: "500g",
+          Dimensions: "15x10x10 cm",
+          Barcode: "4567890123"
+        }
+      },
+      5: {
+        name: "Portable Charger",
+        price: "$29.99",
+        stock: 30,
+        description: "Compact portable charger for all your devices.",
+        image: "product5a.jpg",
+        info: {
+          Weight: "200g",
+          Dimensions: "10x6x2 cm",
+          Barcode: "5678901234"
+        }
+      }
+    };
 
-    <h3>Product Information</h3>
-    <table>
-        <tr><th>Weight</th><td>500g</td></tr>
-        <tr><th>Dimensions</th><td>15cm x 10cm x 8cm</td></tr>
-        <tr><th>Barcode</th><td>1234567890123</td></tr>
-        <tr><th>Category</th><td>Electronics</td></tr>
-    </table>
+    const container = document.getElementById('productContainer');
 
-    <a class="buy-btn">Buy Now</a>
-</div>
-
-<script>
-    const p = new URLSearchParams(window.location.search);
-
-    document.getElementById("name").textContent = p.get("name");
-    document.getElementById("price").textContent = p.get("price");
-    document.getElementById("stock").textContent = p.get("stock");
-    document.getElementById("desc").textContent = p.get("desc");
-    document.getElementById("image").src = p.get("image");
-</script>
-
+    if(products[productId]){
+      const product = products[productId];
+      container.innerHTML = `
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.name}">
+        </div>
+        <div class="product-info">
+          <h2>${product.name}</h2>
+          <p><strong>Price:</strong> ${product.price}</p>
+          <p><strong>Stock:</strong> ${product.stock}</p>
+          <p>${product.description}</p>
+          <table>
+            <tbody>
+              ${Object.entries(product.info).map(([key, value]) => `<tr><th>${key}</th><td>${value}</td></tr>`).join('')}
+            </tbody>
+          </table>
+          <button onclick="alert('Purchased ${product.name}!')">Buy Now</button>
+        </div>
+      `;
+    } else {
+      container.innerHTML = "<p>Product not found.</p>";
+    }
+  </script>
 </body>
 </html>
