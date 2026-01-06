@@ -21,17 +21,17 @@ h1 { margin-top: 20px; }
 <div class="products" id="product-container"></div>
 
 <script>
-// SINGLE SOURCE OF TRUTH: products object
+// PRODUCTS OBJECT: Correct images for each product
 const products = {
     1: { name: "Wireless Headphones", price: 899, image: "product1a.jpg" },
-    2: { name: "Smartwatch", price: 1499, image: "product2a.jpg" },
-    3: { name: "Gaming Mouse", price: 699, image: "product3a.jpg" },
-    4: { name: "Bluetooth Speaker", price: 1299, image: "product4a.jpg" },
+    2: { name: "Bluetooth Speaker", price: 1299, image: "product2a.jpg" },
+    3: { name: "Smartwatch", price: 1499, image: "product3a.jpg" },
+    4: { name: "Gaming Mouse", price: 699, image: "product4a.jpg" },
     5: { name: "Portable Charger", price: 499, image: "product5a.jpg" }
 };
 
-// HOMEPAGE ORDER: Wireless Headphones, Bluetooth Speaker, Smartwatch, Gaming Mouse, Portable Charger
-const homepageOrder = [1,4,2,3,5];
+// HOMEPAGE ORDER: 1. Wireless Headphones, 2. Bluetooth Speaker, 3. Smartwatch, 4. Gaming Mouse, 5. Portable Charger
+const homepageOrder = [1,2,3,4,5];
 
 const container = document.getElementById("product-container");
 
